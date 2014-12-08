@@ -32,8 +32,7 @@ if (centerWall) {
 
 ```
 
-
-
+####Schematic
 ![alt text](https://github.com/JasperArneberg/ECE382_Lab8/blob/master/schematic.png?raw=true "Schematic")
 
 ##A Functionality

@@ -10,6 +10,7 @@ void main() {
 	int leftSignal;
 	int centerSignal;
 	int rightSignal;
+	int firstTurn = TRUE;
 
 	void initMSP430();
 	IFG1=0; 													// clear interrupt flag1
@@ -23,12 +24,13 @@ void main() {
 		leftSignal = readADC(LEFT_IR);							// read analog pin 1.2
 		centerSignal = readADC(CENTER_IR);						// read analog pin 1.3
 		rightSignal = readADC(RIGHT_IR);						// read analog pin 1.4
+
 		/*
 		if (leftSignal > LEFT_WALL) {
 			P1OUT |= BIT0;										// turn on red led
 			P1OUT &= ~BIT6;
 			turnRight(1, TURN_SPEED);							// turn 5 degrees right
-			while(leftSignal > LEFT_WALL - 20) {
+			while(leftSignal > LEFT_WALL - 100) {
 				leftSignal = readADC(LEFT_IR);
 			}
 		}
@@ -36,16 +38,22 @@ void main() {
 			P1OUT &= ~BIT0;
 			P1OUT |= BIT6;										// turn on green led
 			turnLeft(1, TURN_SPEED);							// turn 5 degrees left
-			while(leftSignal > LEFT_WALL - 20) {
-				leftSignal = readADC(LEFT_IR);
+			while(rightSignal < RIGHT_WALL - 100) {
+				rightSignal = readADC(RIGHT_IR);
 			}
 		}
-		else*/ if (centerSignal > CENTER_WALL) {
+		else */if (centerSignal > CENTER_WALL) {
 			P1OUT |= BIT0;										//turn on both leds
 			P1OUT |= BIT6;
 			moveBack(NORMAL_SPEED);
 			__delay_cycles(5000000);
-			turnLeft(90, TURN_SPEED);
+			if (firstTurn == TRUE) {
+				turnLeft(90, TURN_SPEED);
+				firstTurn = FALSE;
+			} else {
+				turnRight(90, TURN_SPEED);
+			}
+
 			stopMoving();
 			__delay_cycles(10000000);
 		} else {

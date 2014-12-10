@@ -10,7 +10,6 @@ void main() {
 	int leftSignal;
 	int centerSignal;
 	int rightSignal;
-	int firstTurn = TRUE;
 
 	void initMSP430();
 	IFG1=0; 													// clear interrupt flag1
@@ -47,9 +46,8 @@ void main() {
 			P1OUT |= BIT6;
 			moveBack(NORMAL_SPEED);
 			__delay_cycles(5000000);
-			if (firstTurn == TRUE) {
+			if (leftSignal < rightSignal) {
 				turnLeft(90, TURN_SPEED);
-				firstTurn = FALSE;
 			} else {
 				turnRight(90, TURN_SPEED);
 			}

@@ -24,36 +24,21 @@ void main() {
 		centerSignal = readADC(CENTER_IR);						// read analog pin 1.3
 		rightSignal = readADC(RIGHT_IR);						// read analog pin 1.4
 
-		/*
-		if (leftSignal > LEFT_WALL) {
-			P1OUT |= BIT0;										// turn on red led
-			P1OUT &= ~BIT6;
-			turnRight(1, TURN_SPEED);							// turn 5 degrees right
-			while(leftSignal > LEFT_WALL - 100) {
-				leftSignal = readADC(LEFT_IR);
-			}
-		}
-		else if (rightSignal > RIGHT_WALL) {
-			P1OUT &= ~BIT0;
-			P1OUT |= BIT6;										// turn on green led
-			turnLeft(1, TURN_SPEED);							// turn 5 degrees left
-			while(rightSignal < RIGHT_WALL - 100) {
-				rightSignal = readADC(RIGHT_IR);
-			}
-		}
-		else */if (centerSignal > CENTER_WALL) {
-			P1OUT |= BIT0;										//turn on both leds
-			P1OUT |= BIT6;
-			moveBack(NORMAL_SPEED);
-			__delay_cycles(5000000);
-			if (leftSignal < rightSignal) {
-				turnLeft(90, TURN_SPEED);
-			} else {
-				turnRight(90, TURN_SPEED);
+		if (centerSignal > CENTER_WALL) {
+			stopMoving();
+			__delay_cycles(1000000);
+			centerSignal = readADC(CENTER_IR);
+			if (centerSignal > CENTER_WALL) {					//two values in a row
+				P1OUT |= BIT0;									//turn on both leds
+				P1OUT |= BIT6;
+				if (leftSignal < rightSignal) {
+					turnLeft(90, TURN_SPEED);
+				} else {
+					turnRight(90, TURN_SPEED);
+				}
+				stopMoving();
 			}
 
-			stopMoving();
-			__delay_cycles(10000000);
 		} else {
 			P1OUT &= ~BIT0;										// turn off both leds
 			P1OUT &= ~BIT6;

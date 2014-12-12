@@ -25,20 +25,18 @@ void main() {
 		rightSignal = readADC(RIGHT_IR);						// read analog pin 1.4
 
 		if (centerSignal > CENTER_WALL) {
-			stopMoving();
-			__delay_cycles(1000000);
-			centerSignal = readADC(CENTER_IR);
-			if (centerSignal > CENTER_WALL) {					//two values in a row
-				P1OUT |= BIT0;									//turn on both leds
-				P1OUT |= BIT6;
-				if (leftSignal < rightSignal) {
-					turnLeft(90, TURN_SPEED);
-				} else {
-					turnRight(90, TURN_SPEED);
-				}
-				stopMoving();
+			P1OUT |= BIT0;										//turn on both leds
+			P1OUT |= BIT6;
+			moveBack(NORMAL_SPEED);
+			__delay_cycles(2000000);
+			if (leftSignal < rightSignal + LR_DIFF) {
+				turnLeft(90, TURN_SPEED);
+			} else {
+				turnRight(90, TURN_SPEED);
 			}
 
+			stopMoving();
+			__delay_cycles(5000000);
 		} else {
 			P1OUT &= ~BIT0;										// turn off both leds
 			P1OUT &= ~BIT6;
@@ -46,4 +44,3 @@ void main() {
 		}
 	}
 }
-

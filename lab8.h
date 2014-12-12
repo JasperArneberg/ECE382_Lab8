@@ -15,9 +15,10 @@
 #define 	LEFT_IR 		2
 #define 	CENTER_IR 		3
 #define 	RIGHT_IR 		4
+#define		LR_DIFF			0x50
 
 #define 	LEFT_CAL		0				//used so robot drives straight forward
-#define		RIGHT_CAL		-5
+#define		RIGHT_CAL		-4
 
 #define		TRUE 			1
 #define		FALSE			0

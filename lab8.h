@@ -15,10 +15,10 @@
 #define 	LEFT_IR 		2
 #define 	CENTER_IR 		3
 #define 	RIGHT_IR 		4
-#define		LR_DIFF			0x50
+#define		LR_DIFF			0x80
 
 #define 	LEFT_CAL		0				//used so robot drives straight forward
-#define		RIGHT_CAL		-4
+#define		RIGHT_CAL		-5
 
 #define		TRUE 			1
 #define		FALSE			0
@@ -98,7 +98,7 @@ void turnLeft(int degrees, int speed) {
 	__delay_cycles(200000);					//motor start-up delay
 	int i = 0;
 	for (i=0; i<degrees; i++) {
-		__delay_cycles(33000);				//3300 cycles per degree when speed = 60
+		__delay_cycles(32000);				//3300 cycles per degree when speed = 60
 	}
 }
 
@@ -118,7 +118,7 @@ void turnRight(int degrees, int speed) {
 	__delay_cycles(200000);					//motor start-up delay
 	int i = 0;
 	for (i=0; i<degrees; i++) {
-		__delay_cycles(33000);				//3300 cycles per degree when speed = 60
+		__delay_cycles(32000);				//3300 cycles per degree when speed = 60
 	}
 }
 

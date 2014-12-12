@@ -27,11 +27,15 @@ void main() {
 		if (centerSignal > CENTER_WALL) {
 			P1OUT |= BIT0;										//turn on both leds
 			P1OUT |= BIT6;
-			moveBack(NORMAL_SPEED);
-			__delay_cycles(2000000);
 			if (leftSignal < rightSignal + LR_DIFF) {
+				moveBack(NORMAL_SPEED);
+				__delay_cycles(3000000);
+				stopMoving();
+				__delay_cycles(3000000);
 				turnLeft(90, TURN_SPEED);
 			} else {
+				moveBack(NORMAL_SPEED);
+				__delay_cycles(3000000);
 				turnRight(90, TURN_SPEED);
 			}
 

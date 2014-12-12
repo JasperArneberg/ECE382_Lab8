@@ -126,7 +126,7 @@ One simple change was made for completed A functionality. Again, this took under
 The most difficult part about A functionality is that the robot was not allowed to touch any of the walls. If the robot starting veering off to one side, it would fail to complete the task.
 
 ##Bonus Functionality
-The robot was able to traverse the maze backwards using the code developed for A funtionality. This was worth of bonus functionality.
+The robot was able to traverse the maze backwards using the code developed for A funtionality. This was worthy of bonus functionality.
 
 ##Debugging
 When the moveForward() command was called, the robot veered off the left. Here was the original code:
@@ -157,7 +157,12 @@ void moveForward(int speed) {
 
 The LEFT_CAL and RIGHT_CAL allowed the motor speeds to be tweaked individually. After some brief testing, the right calibration was set to -5 and the left calibration was left at 0. The robot drove straight ahead as desired.
 
+With this design, consistency was the most important concern. The robot had to turn exactly 90 degrees each time it was told to. In order to maintain this consistency, the robot's movement was stopped before and after each turn. This allowed the turns to execute nearly perfectly every time.
+
 ##Conclusion
+In conclusion, this laboratory exercise taught a few important lessons. First, feedback systems greatly improve a design's performance. My design had virtually no feedback systems. I had to trust that the robot would turn exactly 90 degrees every time I told it to. In order to make this work, I did painstaking calibration each time I put a new battery in. A much better way would be to use the IR sensors to tell when the robot had turned away from the wall. An edge-following method would accomplish this. Although is more coding-intensive, an edge-following strategy works much more consistently.
+
+Overall, this lab was a great way to wrap up the semester. It provided a fun and practical application of microcontrollers, while also facilitating a competetive atmosphere. This was definitely the highlight of ECE 382 and one of the highlights of my academic career.
 
 ##Documentation
 I used http://www.tablesgenerator.com/markdown_tables to generate markdown tables efficiently.  
